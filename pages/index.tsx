@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Button from '../components/Button'
+import Modal from '../components/Modal'
 
 export default function Home() {
   return (
@@ -10,7 +11,17 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Button buttonText={'Click Me!'} buttonHandler={() => console.log('Clicked!')} />
+      <Button
+        buttonText={'Click Me!'}
+        buttonHandler={() => console.log('Clicked!')}
+      />
+      <Modal
+        modalButtonText={'Click for Popup!'}
+        modalPopUpHeader={'Welcome!'}
+        modalPopUpText={
+          'Thank you for taking a look at this project! Would you like to continue? 🤠'
+        }
+      />
     </>
   )
 }
