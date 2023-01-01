@@ -1,8 +1,21 @@
 import Head from 'next/head'
+import { useState } from 'react'
+import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Button from '../components/Button'
 import Modal from '../components/Modal'
+import { useDarkSideHook } from '../hooks/useDarkSideHook'
 
 export default function Home() {
+  const { colourTheme, setTheme } = useDarkSideHook()
+  const [darkSide, setDarkSide] = useState(
+    colourTheme === 'light' ? true : false
+  )
+
+  const toggleDarkMode = (checked: boolean) => {
+    setTheme(colourTheme)
+    setDarkSide(checked)
+  }
+
   return (
     <>
       <Head>
@@ -11,17 +24,49 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Button
-        buttonText={'Click Me!'}
-        buttonHandler={() => console.log('Clicked!')}
-      />
-      <Modal
-        modalButtonText={'Click for Popup!'}
-        modalPopUpHeader={'Welcome!'}
-        modalPopUpText={
-          'Thank you for taking a look at this project! Would you like to continue? 🤠'
-        }
-      />
+      <div className="dark:bg-gray-800 h-screen w-screen">
+        <DarkModeSwitch
+          style={{ marginBottom: '2rem' }}
+          checked={darkSide}
+          onChange={toggleDarkMode}
+          size={30}
+        />
+
+        {/** button showcase */}
+        <Button
+          buttonText={'Click Me!'}
+          buttonHandler={() => console.log('Clicked!')}
+        />
+        <Button
+          buttonText={'Click Me!'}
+          buttonHandler={() => console.log('Clicked!')}
+          buttonStyles={
+            'rounded-[4px] bg-sky-500 dark:bg-sky-200 hover:bg-sky-600 dark:hover:bg-sky-300 text-white dark:text-sky-900 px-3 py-1 font-inter font-medium text-sm'
+          }
+        />
+
+        {/** modal showcase */}
+        <Modal
+          modalButtonText={'Click for Popup!'}
+          modalPopUpHeader={'Welcome!'}
+          modalPopUpText={
+            'Thank you for taking a look at this project! Would you like to continue? 🤠'
+          }
+        />
+        <Modal
+          modalButtonText={'Click for Popup!'}
+          modalPopUpHeader={'Welcome!'}
+          modalPopUpText={
+            'Thank you for taking a look at this project! Would you like to continue? 🤠'
+          }
+          modalButtonStyles={
+            'rounded-[4px] bg-sky-300 dark:bg-fuchsia-200 hover:bg-sky-400 dark:hover:bg-fuchsia-300 text-white dark:text-fuchsia-700 px-3 py-1 font-inter font-medium text-sm'
+          }
+          modalCancelButtonStyles={
+            'font-inter inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-rose-300 hover:bg-blue-200 dark:hover:bg-rose-400 px-3 py-2 text-sm font-medium text-blue-900 dark:text-rose-900'
+          }
+        />
+      </div>
     </>
   )
 }

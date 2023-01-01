@@ -16,14 +16,14 @@ interface ModalProps {
 }
 
 const DEFAULT_BUTTON_STYLES =
-  'rounded-[4px] bg-gray-800 hover:bg-gray-900 px-3 py-1 font-inter font-medium text-sm text-white'
+  'rounded-[4px] bg-gray-800 dark:bg-white hover:bg-gray-900 dark:hover:bg-gray-100 text-white dark:text-gray-700 px-3 py-1 font-inter font-medium text-sm'
 const DEFAULT_POPUP_STYLES =
-  'w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 p-6 text-left align-middle shadow-xl transition-all'
+  'w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 dark:bg-white p-6 text-left align-middle shadow-xl transition-all'
 const DEFAULT_POPUP_HEADER_STYLES =
-  'font-inter text-lg font-medium leading-6 text-white'
-const DEFAULT_POPUP_TEXT_STYLES = 'font-inter text-sm text-gray-400'
+  'font-inter text-lg font-medium leading-6 text-white dark:text-gray-700'
+const DEFAULT_POPUP_TEXT_STYLES = 'font-inter text-sm text-gray-400 dark:text-gray-500'
 const DEFAULT_POPUP_CANCEL_BUTTON_STYLES =
-  'font-inter inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-3 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200'
+  'font-inter inline-flex justify-center rounded-md border border-transparent bg-blue-100 hover:bg-blue-200 px-3 py-2 text-sm font-medium text-blue-900'
 
 const DEFAULT_POPUP_CANCEL_TEXT = 'Cancel'
 
@@ -42,11 +42,11 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  function closeModal() {
+  const closeModal = () => {
     setIsOpen(false)
   }
 
-  function openModal() {
+  const openModal = () => {
     setIsOpen(true)
   }
 

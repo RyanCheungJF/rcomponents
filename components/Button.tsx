@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 const DEFAULT_BUTTON_STYLES =
-  'rounded-[4px] bg-pink-700 hover:bg-pink-800 px-3 py-1 font-inter font-medium text-sm text-white'
+  'rounded-[4px] bg-gray-800 dark:bg-white hover:bg-gray-900 dark:hover:bg-gray-100 text-white dark:text-gray-700 px-3 py-1 font-inter font-medium text-sm'
 
 const Button: React.FC<ButtonProps> = ({
   buttonText,
