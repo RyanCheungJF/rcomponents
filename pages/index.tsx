@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Button from '../components/Button'
+import Input from '../components/Input'
 import Modal from '../components/Modal'
 import { useDarkSideHook } from '../hooks/useDarkSideHook'
 
@@ -32,7 +33,7 @@ export default function Home() {
           size={30}
         />
 
-        {/** button showcase */}
+        {/** button showcase **/}
         <Button
           buttonText={'Click Me!'}
           buttonHandler={() => console.log('Clicked!')}
@@ -45,7 +46,7 @@ export default function Home() {
           }
         />
 
-        {/** modal showcase */}
+        {/** modal showcase **/}
         <Modal
           modalButtonText={'Click for Popup!'}
           modalPopUpHeader={'Welcome!'}
@@ -65,6 +66,14 @@ export default function Home() {
           modalCancelButtonStyles={
             'font-inter inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-rose-300 hover:bg-blue-200 dark:hover:bg-rose-400 px-3 py-2 text-sm font-medium text-blue-900 dark:text-rose-900'
           }
+        />
+
+        {/** input showcase **/}
+        <Input placeholder={'abc@gmail.com'} errorMessage={''} />
+        <Input
+          placeholder={'********'}
+          passwordInput={true}
+          errorMessage={'Passwords do not match!'}
         />
       </div>
     </>
