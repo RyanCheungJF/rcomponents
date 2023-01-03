@@ -4,6 +4,7 @@ import { DarkModeSwitch } from 'react-toggle-dark-mode'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Modal from '../components/Modal'
+import Select from '../components/Select'
 import { useDarkSideHook } from '../hooks/useDarkSideHook'
 
 export default function Home() {
@@ -11,6 +12,10 @@ export default function Home() {
   const [darkSide, setDarkSide] = useState(
     colourTheme === 'light' ? true : false
   )
+
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [fruit, setFruit] = useState<string>('apple')
 
   const toggleDarkMode = (checked: boolean) => {
     setTheme(colourTheme)
@@ -40,7 +45,7 @@ export default function Home() {
         />
         <Button
           buttonText={'Click Me!'}
-          buttonHandler={() => console.log('Clicked!')}
+          buttonHandler={() => console.log(fruit)}
           buttonStyles={
             'rounded-[4px] bg-sky-500 dark:bg-sky-200 hover:bg-sky-600 dark:hover:bg-sky-300 text-white dark:text-sky-900 px-3 py-1 font-inter font-medium text-sm'
           }
@@ -69,11 +74,23 @@ export default function Home() {
         />
 
         {/** input showcase **/}
-        <Input placeholder={'abc@gmail.com'} errorMessage={''} />
+        <Input
+          placeholder={'abc@gmail.com'}
+          errorMessage={''}
+          inputHandler={setEmail}
+        />
         <Input
           placeholder={'********'}
           passwordInput={true}
           errorMessage={'Passwords do not match!'}
+          inputHandler={setPassword}
+        />
+
+        {/** select showcase **/}
+        <Select
+          options={['apple', 'pear', 'strawberry']}
+          selected={fruit}
+          selectedHandler={setFruit}
         />
       </div>
     </>

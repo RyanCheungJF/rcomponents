@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 
 interface InputProps {
   placeholder?: string
   passwordInput?: boolean
   inputStyles?: string
   errorMessage: string
+  inputHandler: Dispatch<SetStateAction<string>>
 }
 
 const DEFAULT_INPUT_STYLES =
@@ -15,7 +16,14 @@ const Input: React.FC<InputProps> = ({
   passwordInput,
   inputStyles,
   errorMessage,
+  inputHandler,
 }) => {
+  const handleChange = (event: {
+    target: { value: React.SetStateAction<string> }
+  }) => {
+    inputHandler(event.target.value)
+  }
+
   return (
     <>
       <div>
@@ -26,6 +34,7 @@ const Input: React.FC<InputProps> = ({
             (inputStyles || DEFAULT_INPUT_STYLES) +
             (errorMessage != '' && ' border-red-500')
           }
+          onChange={handleChange}
         />
         {errorMessage != '' && (
           <p className="text-red-500 text-xs italic">{errorMessage}</p>
