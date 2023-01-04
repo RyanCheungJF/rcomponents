@@ -6,11 +6,8 @@ interface SelectProps {
   options: string[]
   optionsStyles?: string
   selectStyles?: string
-  selected: string | string[]
-  selectedHandler:
-    | Dispatch<SetStateAction<string>>
-    | Dispatch<SetStateAction<string[]>>
-  selectMultiple?: boolean
+  selected: string
+  selectedHandler: Dispatch<SetStateAction<string>>
 }
 
 const DEFAULT_SELECT_STYLES =
@@ -24,15 +21,10 @@ const Select: React.FC<SelectProps> = ({
   selectStyles,
   selected,
   selectedHandler,
-  selectMultiple,
 }) => {
   return (
     <>
-      <Listbox
-        value={selected}
-        onChange={selectedHandler}
-        multiple={selectMultiple}
-      >
+      <Listbox onChange={selectedHandler}>
         <div className="relative mt-1">
           <Listbox.Button className={selectStyles || DEFAULT_SELECT_STYLES}>
             <span className="block truncate">{selected}</span>

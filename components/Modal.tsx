@@ -13,6 +13,7 @@ interface ModalProps {
   modalCancelButtonStyles?: string
   modalConfirmationButtonText?: string
   modalConfirmationButtonStyles?: string
+  modalConfirmationButtonAction?: () => any
 }
 
 const DEFAULT_BUTTON_STYLES =
@@ -21,7 +22,8 @@ const DEFAULT_POPUP_STYLES =
   'w-full max-w-md transform overflow-hidden rounded-2xl bg-gray-800 dark:bg-white p-6 text-left align-middle shadow-xl transition-all'
 const DEFAULT_POPUP_HEADER_STYLES =
   'font-inter text-lg font-medium leading-6 text-white dark:text-gray-700'
-const DEFAULT_POPUP_TEXT_STYLES = 'font-inter text-sm text-gray-400 dark:text-gray-500'
+const DEFAULT_POPUP_TEXT_STYLES =
+  'font-inter text-sm text-gray-400 dark:text-gray-500'
 const DEFAULT_POPUP_CANCEL_BUTTON_STYLES =
   'font-inter inline-flex justify-center rounded-md border border-transparent bg-blue-100 hover:bg-blue-200 px-3 py-2 text-sm font-medium text-blue-900'
 
@@ -39,6 +41,7 @@ const Modal: React.FC<ModalProps> = ({
   modalCancelButtonStyles,
   modalConfirmationButtonText,
   modalConfirmationButtonStyles,
+  modalConfirmationButtonAction,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -48,6 +51,11 @@ const Modal: React.FC<ModalProps> = ({
 
   const openModal = () => {
     setIsOpen(true)
+  }
+
+  const handleConfirmationButton = () => {
+    closeModal()
+    modalConfirmationButtonAction!()
   }
 
   return (
@@ -115,6 +123,14 @@ const Modal: React.FC<ModalProps> = ({
                       onClick={closeModal}
                     >
                       {modalCancelButtonText || DEFAULT_POPUP_CANCEL_TEXT}
+                    </button>
+
+                    <button
+                      type="button"
+                      className={modalConfirmationButtonStyles}
+                      onClick={handleConfirmationButton}
+                    >
+                      {modalConfirmationButtonText}
                     </button>
                   </div>
                 </Dialog.Panel>

@@ -16,7 +16,6 @@ export default function Home() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [fruit, setFruit] = useState<string>('apple')
-  const [multipleFruit, setMultipleFruit] = useState<string[]>([])
 
   const toggleDarkMode = (checked: boolean) => {
     setTheme(colourTheme)
@@ -62,16 +61,19 @@ export default function Home() {
         />
         <Modal
           modalButtonText={'Click for Popup!'}
-          modalPopUpHeader={'Welcome!'}
-          modalPopUpText={
-            'Thank you for taking a look at this project! Would you like to continue? 🤠'
-          }
+          modalPopUpHeader={'Welcome?'}
+          modalPopUpText={'Do you have an account? 🤠'}
           modalButtonStyles={
             'rounded-[4px] bg-sky-300 dark:bg-fuchsia-200 hover:bg-sky-400 dark:hover:bg-fuchsia-300 text-white dark:text-fuchsia-700 px-3 py-1 font-inter font-medium text-sm'
           }
           modalCancelButtonStyles={
             'font-inter inline-flex justify-center rounded-md border border-transparent bg-blue-100 dark:bg-rose-300 hover:bg-blue-200 dark:hover:bg-rose-400 px-3 py-2 text-sm font-medium text-blue-900 dark:text-rose-900'
           }
+          modalConfirmationButtonText={'Sign Up'}
+          modalConfirmationButtonStyles={
+            'ml-2 font-inter inline-flex justify-center rounded-md border border-transparent bg-teal-200 dark:bg-emerald-300 hover:bg-teal-300 dark:hover:bg-emerald-400 px-3 py-2 text-sm font-medium text-teal-900 dark:text-emerald-900'
+          }
+          modalConfirmationButtonAction={() => console.log('Clicked!')}
         />
 
         {/** input showcase **/}
@@ -92,12 +94,6 @@ export default function Home() {
           options={['apple', 'pear', 'strawberry']}
           selected={fruit}
           selectedHandler={setFruit}
-        />
-        <Select
-          options={['apple', 'pear', 'strawberry', 'banana', 'cherry']}
-          selected={multipleFruit}
-          selectedHandler={setFruit}
-          selectMultiple={true}
         />
       </div>
     </>
