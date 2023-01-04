@@ -16,6 +16,7 @@ export default function Home() {
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
   const [fruit, setFruit] = useState<string>('apple')
+  const [multipleFruit, setMultipleFruit] = useState<string[]>([])
 
   const toggleDarkMode = (checked: boolean) => {
     setTheme(colourTheme)
@@ -91,6 +92,12 @@ export default function Home() {
           options={['apple', 'pear', 'strawberry']}
           selected={fruit}
           selectedHandler={setFruit}
+        />
+        <Select
+          options={['apple', 'pear', 'strawberry', 'banana', 'cherry']}
+          selected={multipleFruit}
+          selectedHandler={setFruit}
+          selectMultiple={true}
         />
       </div>
     </>
